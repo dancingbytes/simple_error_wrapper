@@ -5,7 +5,7 @@ require "simple_error_wrapper/version"
 Gem::Specification.new do |s|
   
   s.name        = 'simple_error_wrapper'
-  s.version     = ActsAsTagging::VERSION
+  s.version     = SimpleErrorWrapper::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = ['Tyralion']
   s.email       = ['info@dancingbytes.ru']
