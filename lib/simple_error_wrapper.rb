@@ -52,7 +52,7 @@ module SimpleErrorWrapper
 
 end # SimpleErrorWrapper
 
-defined?(ActionView)
+if defined?(ActionView)
   ActionView::Base.send :include, SimpleErrorWrapper::ActionViewBase
   ActionView::Helpers::InstanceTag.send :include, SimpleErrorWrapper::HelpersInstanceTag
 end  
