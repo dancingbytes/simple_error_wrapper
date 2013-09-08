@@ -2,7 +2,7 @@
 module SimpleErrorWrapper
 
   module ActionViewBase
-  
+
     @@field_error_proc = lambda { |html_tag, instance|
       ::SimpleErrorWrapper::ErrorMessage.call(html_tag, instance)
     }
@@ -10,7 +10,7 @@ module SimpleErrorWrapper
   end # ActionViewBase
 
   module HelpersInstanceTag
-    
+
     def error_wrapping(html_tag)
 
       if object_has_errors?
@@ -45,14 +45,22 @@ module SimpleErrorWrapper
         str << "<li>#{error}</li>"
       }
       "<ul>#{html}</ul>"
-      
+
     end # list
 
   end # ErrorMessage
 
 end # SimpleErrorWrapper
 
+ver, maj, min = Rails.version.split(".").map!(&:to_i)
+
 if defined?(ActionView)
+
   ActionView::Base.send :include, SimpleErrorWrapper::ActionViewBase
-  ActionView::Helpers::InstanceTag.send :include, SimpleErrorWrapper::HelpersInstanceTag
-end  
+  if ver < 4
+    ActionView::Helpers::InstanceTag.send :include, SimpleErrorWrapper::HelpersInstanceTag
+  else
+    ActionView::Helpers::Tags::Base.send :include, SimpleErrorWrapper::HelpersInstanceTag
+  end
+
+end # if
