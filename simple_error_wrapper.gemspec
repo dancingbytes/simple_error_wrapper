@@ -3,12 +3,12 @@ $:.push File.expand_path("../lib", __FILE__)
 require "simple_error_wrapper/version"
 
 Gem::Specification.new do |s|
-  
+
   s.name        = 'simple_error_wrapper'
   s.version     = SimpleErrorWrapper::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = ['Tyralion']
-  s.email       = ['info@dancingbytes.ru']
+  s.email       = ['piliaiev@gmail.com']
   s.homepage    = 'https://github.com/dancingbytes/simple_error_wrapper'
   s.summary     = 'Simple wrapper for rails errors'
   s.description = 'Simple wrapper for rails errors'
@@ -21,5 +21,5 @@ Gem::Specification.new do |s|
   s.licenses = ['MIT']
 
   s.add_dependency 'railties', ['>= 3.0.0']
-  
+
 end
