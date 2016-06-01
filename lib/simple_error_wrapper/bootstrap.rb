@@ -5,9 +5,12 @@ module SimpleErrorWrapper
 
     def call(tag, obj)
 
-      %s(<div class="has-error" data-container="body" data-toggle="popover" data-placement="auto" data-content="%{msg}">%{tag}</div>).to_s % {
-        :tag => tag,
-        :msg => list(obj).html_safe
+      %Q(<div class="has-error" data-container="body"
+        data-toggle="popover" data-placement="auto"
+        data-content="%{msg}">%{tag}</div>
+      ).freeze % {
+        tag: tag,
+        msg: list(obj).html_safe
       }
 
     end # call

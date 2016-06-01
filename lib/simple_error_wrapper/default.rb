@@ -5,12 +5,12 @@ module SimpleErrorWrapper
 
     def call(tag, obj)
 
-      %s(<div class="field-error-tag">%{tag}
+      %Q(<div class="field-error-tag">%{tag}
           <div class="field-error-msg">%{msg}</div>
         </div>
-      ).to_s % {
-        :tag => tag,
-        :msg => list(obj).html_safe
+      ).freeze % {
+        tag: tag,
+        msg: list(obj).html_safe
       }
 
     end # call
