@@ -5,7 +5,7 @@ module SimpleErrorWrapper
 
     def call(tag, obj)
 
-      %Q(<div class="has-error" data-container="body"
+      %(<div class="has-error" data-container="body"
         data-toggle="popover" data-placement="auto"
         data-content="%{msg}">%{tag}</div>
       ).freeze % {

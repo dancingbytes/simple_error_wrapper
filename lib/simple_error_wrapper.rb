@@ -1,8 +1,10 @@
 # encoding: utf-8
 require 'simple_error_wrapper/base'
 
-if defined?(Bootstrap)
+if defined?(::Bootstrap)
   require 'simple_error_wrapper/bootstrap'
+elsif defined?(::Materialize)
+  require 'simple_error_wrapper/materialize'
 else
   require 'simple_error_wrapper/default'
 end

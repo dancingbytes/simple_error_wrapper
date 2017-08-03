@@ -5,7 +5,7 @@ module SimpleErrorWrapper
 
     def call(tag, obj)
 
-      %Q(<div class="field-error-tag">%{tag}
+      %(<div class="field-error-tag">%{tag}
           <div class="field-error-msg">%{msg}</div>
         </div>
       ).freeze % {
