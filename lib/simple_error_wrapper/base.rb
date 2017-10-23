@@ -1,29 +1,21 @@
-# encoding: utf-8
 module SimpleErrorWrapper
 
-  module ActionViewBase
+  class Base
 
-    @@field_error_proc = lambda { |html_tag, instance|
-      ::SimpleErrorWrapper::ErrorMessage.call(html_tag, instance)
-    }
+    def initialize(object)
 
-  end # ActionViewBase
+      me = self
 
-  module HelpersInstanceTag
+      object.define_singleton_method(:error_decorator, ->(tag, obj) {
+        me.call(tag, obj)
+      }) unless object.respond_to?(:error_decorator)
 
-    def error_wrapping(html_tag)
+    end # initialize
 
-      if object_has_errors?
-        ::ActionView::Base.field_error_proc.call(html_tag, self).html_safe
-      else
-        html_tag
-      end
+    def call(tag, obj)
+      raise NotImplementedError
+    end # call
 
-    end # error_wrapping
-
-  end # HelpersInstanceTag
-
-  class ErrorMessage
-  end # ErrorMessage
+  end # Base
 
 end # SimpleErrorWrapper

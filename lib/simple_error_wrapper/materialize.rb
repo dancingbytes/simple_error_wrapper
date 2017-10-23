@@ -1,7 +1,10 @@
-# encoding: utf-8
 module SimpleErrorWrapper
 
-  module Materialize
+  class Materialize < ::SimpleErrorWrapper::Base
+
+    ERROR_TMPL = %(%{tag}<label
+      data-error="%{msg}" class="error-label active"></label>
+    ).freeze
 
     def call(tag, obj)
 
@@ -11,24 +14,23 @@ module SimpleErrorWrapper
         node['class'] = "#{node['class']} invalid"
       }
 
-      %(%{tag}<label data-error="%{msg}" class="error-label active"></label>).freeze % {
+      ERROR_TMPL % {
         tag: doc.inner_html,
         msg: list(obj).html_safe
       }
 
     end # call
 
+    private
+
     def list(obj)
 
-      html = obj.error_message.inject([]) { |arr, error|
+      obj.error_message.inject([]) { |arr, error|
         arr << error
-      }
-      html.join('\n')
+      }.join('\n')
 
     end # list
 
   end # Materialize
 
 end # SimpleErrorWrapper
-
-::SimpleErrorWrapper::ErrorMessage.send :extend, ::SimpleErrorWrapper::Materialize

@@ -1,19 +1,22 @@
-# encoding: utf-8
 module SimpleErrorWrapper
 
-  module Default
+  class Default < ::SimpleErrorWrapper::Base
+
+    ERROR_TMPL = %(<div class="field-error-tag">%{tag}
+        <div class="field-error-msg">%{msg}</div>
+      </div>
+    ).freeze
 
     def call(tag, obj)
 
-      %(<div class="field-error-tag">%{tag}
-          <div class="field-error-msg">%{msg}</div>
-        </div>
-      ).freeze % {
+      ERROR_TMPL % {
         tag: tag,
         msg: list(obj).html_safe
       }
 
     end # call
+
+    private
 
     def list(obj)
 
@@ -27,5 +30,3 @@ module SimpleErrorWrapper
   end # Default
 
 end # SimpleErrorWrapper
-
-::SimpleErrorWrapper::ErrorMessage.send :extend, ::SimpleErrorWrapper::Default

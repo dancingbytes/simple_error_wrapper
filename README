@@ -1,9 +1,16 @@
 Simple wrapper for rails errors.
 
-Rails version support: 3.0, 3.1, 3.2, 4.0, 4.1, 4.2
+Rails version support: 5.0, 5.1
 Bootstrap support.
+Materialize support.
+
+### How to use
+
+user = User.new(params)
+SimpleErrorWrapper::Materialize.new(user) unless user.valid?
+
 
 Author: Tyralion (piliaiev@gmail.com)
 ======
 
-Copyright (c) 2011-2015 DansingBytes.ru, released under the MIT license
+Copyright (c) 2011-2017 DansingBytes.ru, released under the MIT license

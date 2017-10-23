@@ -1,31 +1,32 @@
-# encoding: utf-8
 module SimpleErrorWrapper
 
-  module Bootstrap
+  class Bootstrap < ::SimpleErrorWrapper::Base
+
+    ERROR_TMPL = %(<div
+      class="has-error" data-container="body"
+      data-toggle="popover" data-placement="auto"
+      data-content="%{msg}">%{tag}</div>
+    ).freeze
 
     def call(tag, obj)
 
-      %(<div class="has-error" data-container="body"
-        data-toggle="popover" data-placement="auto"
-        data-content="%{msg}">%{tag}</div>
-      ).freeze % {
+      ERROR_TMPL % {
         tag: tag,
         msg: list(obj).html_safe
       }
 
     end # call
 
+    private
+
     def list(obj)
 
-      html = obj.error_message.inject([]) { |arr, error|
+      obj.error_message.inject([]) { |arr, error|
         arr << error
-      }
-      html.join('\n')
+      }.join('\n')
 
     end # list
 
   end # Bootstrap
 
 end # SimpleErrorWrapper
-
-::SimpleErrorWrapper::ErrorMessage.send :extend, ::SimpleErrorWrapper::Bootstrap
