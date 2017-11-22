@@ -21,6 +21,6 @@ Gem::Specification.new do |s|
   s.licenses = ['MIT']
 
   s.add_dependency 'railties', ['>= 3.0.0']
-  s.add_dependency 'nokogiri', '~> 1.6'
+  s.add_dependency 'nokogiri', '~> 1.8'
 
 end
