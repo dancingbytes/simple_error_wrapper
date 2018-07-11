@@ -1,6 +1,6 @@
 # encoding: utf-8
 module SimpleErrorWrapper
 
-  VERSION = '2.0'.freeze
+  VERSION = '2.1'.freeze
 
 end # SimpleErrorWrapper
