@@ -16,6 +16,9 @@ module SimpleErrorWrapper
 
       end
 
+    else
+      require 'simple_error_wrapper/materialize/version1'
+      include ::SimpleErrorWrapper::MaterializeVersion1
     end
 
     private
